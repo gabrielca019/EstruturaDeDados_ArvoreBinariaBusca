@@ -249,4 +249,24 @@ public class ArvoreBinariaBusca {
 		return sequenciaImpressao;
 	}
 	
+	public String imprimirPreOrdem() {
+		if(ehVazia()) {
+			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
+		} else {
+			return imprimirPreOrdemRecursividade(this.raiz);
+		}
+	}
+
+	private String imprimirPreOrdemRecursividade(No noReferencia) {
+		String sequenciaImpressao = "";
+		
+		if(noReferencia != null) {
+			sequenciaImpressao += String.valueOf(noReferencia.getValor()) + " ";
+			sequenciaImpressao += imprimirPreOrdemRecursividade(noReferencia.getEsquerdo());
+			sequenciaImpressao += imprimirPreOrdemRecursividade(noReferencia.getDireito());
+		}
+		
+		return sequenciaImpressao;
+	}
+	
 }

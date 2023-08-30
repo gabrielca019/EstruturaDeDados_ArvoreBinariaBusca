@@ -310,4 +310,20 @@ class ArvoreBinariaTest {
 		assertEquals("1 3 4 5 6 7 8 ", arvore.imprimirInOrdem());
 	}
 	
+	@Test
+	@DisplayName("PRE ORDER - RAIZ _ UM DIREITO _ DOIS ESQUERDO")
+	public void testeImpressaoPreOrdemRaizUmFilhoDireitoDoisEsquerdo() {
+		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
+		
+		assertEquals("5 3 1 7 ", arvore.imprimirPreOrdem());
+	}
+	
+	@Test
+	@DisplayName("PRE ORDER - DOIS NIVEIS")
+	public void testeImpressaoPreOrdemCheiaDoisNiveis() {
+		arvore = builder.montaArvoreCheiaDoisNiveis();
+		
+		assertEquals("5 3 1 4 7 6 8 ", arvore.imprimirPreOrdem());
+	}
+	
 }
