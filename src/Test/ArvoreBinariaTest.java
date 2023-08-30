@@ -284,14 +284,14 @@ class ArvoreBinariaTest {
 	public void testeImpressaoPosOrdemRaizUmFilhoDireitoDoisEsquerdo() {
 		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
 		
-		assertEquals("1 3 7 5", arvore.imprimirPosOrdem());
+		assertEquals("1 3 7 5 ", arvore.imprimirPosOrdem());
 	}
 	
 	@Test
 	public void testeImpressaoPosOrdemCheiaDoisNiveis() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		
-		assertEquals("1 4 3 6 8 7 5", arvore.imprimirPosOrdem());
+		assertEquals("1 4 3 6 8 7 5 ", arvore.imprimirPosOrdem());
 	}
 	
 	@Test

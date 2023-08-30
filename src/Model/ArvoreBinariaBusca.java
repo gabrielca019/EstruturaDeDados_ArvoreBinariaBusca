@@ -220,16 +220,13 @@ public class ArvoreBinariaBusca {
 	private String imprimirPosOrdemRecursividade(No noReferencia) {
 		String sequenciaImpressao = "";
 		
-		if(noReferencia.getEsquerdo() != null) {
+		if(noReferencia != null) {
 			sequenciaImpressao += imprimirPosOrdemRecursividade(noReferencia.getEsquerdo());
-		}
-		
-		if(noReferencia.getDireito() != null) {
 			sequenciaImpressao += imprimirPosOrdemRecursividade(noReferencia.getDireito());
+			sequenciaImpressao += String.valueOf(noReferencia.getValor()) + " ";
 		}
 		
-		String retorno = (noReferencia == this.raiz ? String.valueOf(noReferencia.getValor()) : String.valueOf(noReferencia.getValor()) + " ");
-		return sequenciaImpressao += retorno;
+		return sequenciaImpressao;
 	}
 	
 	public String imprimirInOrdem() {
@@ -243,14 +240,10 @@ public class ArvoreBinariaBusca {
 	private String imprimirInOrdemRecursividade(No noReferencia) {
 		String sequenciaImpressao = "";
 		
-		if(noReferencia.getEsquerdo() != null) {
-			sequenciaImpressao += imprimirPosOrdemRecursividade(noReferencia.getEsquerdo());
-		}
-		
-		sequenciaImpressao += String.valueOf(noReferencia.getValor()) + " ";
-		
-		if(noReferencia.getDireito() != null) {
-			sequenciaImpressao += imprimirPosOrdemRecursividade(noReferencia.getDireito());
+		if(noReferencia != null) {
+			sequenciaImpressao += imprimirInOrdemRecursividade(noReferencia.getEsquerdo());
+			sequenciaImpressao += String.valueOf(noReferencia.getValor()) + " ";
+			sequenciaImpressao += imprimirInOrdemRecursividade(noReferencia.getDireito());
 		}
 		
 		return sequenciaImpressao;
