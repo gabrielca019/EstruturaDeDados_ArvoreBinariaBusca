@@ -209,38 +209,52 @@ public class ArvoreBinariaBusca {
 		}
 	}
 	
+	public String imprimirPreOrdem() {
+		if(ehVazia()) {
+			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
+		} else {
+			return imprimirPreOrdemRecursividade(this.raiz);
+		}
+	}
 	
+	private String imprimirPreOrdemRecursividade(No noReferencia) {
+		String sequenciaImpressao = "";
+		
+		if(noReferencia.getEsquerdo() != null) {
+			sequenciaImpressao += imprimirPreOrdemRecursividade(noReferencia.getEsquerdo());
+		}
+		
+		if(noReferencia.getDireito() != null) {
+			sequenciaImpressao += imprimirPreOrdemRecursividade(noReferencia.getDireito());
+		}
+		
+		
+		String retorno = (noReferencia == this.raiz ? String.valueOf(noReferencia.getValor()) : String.valueOf(noReferencia.getValor()) + " ");
+		return sequenciaImpressao += retorno;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public String imprimirInOrdem() {
+		if(ehVazia()) {
+			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
+		} else {
+			return imprimirInOrdemRecursividade(this.raiz);
+		}
+	}
 
+	private String imprimirInOrdemRecursividade(No noReferencia) {
+		String sequenciaImpressao = "";
+		
+		if(noReferencia.getEsquerdo() != null) {
+			sequenciaImpressao += imprimirPreOrdemRecursividade(noReferencia.getEsquerdo());
+		}
+		
+		sequenciaImpressao += (noReferencia == this.raiz ? String.valueOf(noReferencia.getValor()) : String.valueOf(noReferencia.getValor()) + " ");
+		
+		if(noReferencia.getDireito() != null) {
+			sequenciaImpressao += imprimirPreOrdemRecursividade(noReferencia.getDireito());
+		}
+		
+		return sequenciaImpressao;
+	}
+	
 }

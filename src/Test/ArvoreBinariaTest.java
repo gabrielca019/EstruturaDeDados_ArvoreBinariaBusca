@@ -275,17 +275,18 @@ class ArvoreBinariaTest {
 		assertEquals(6, arvore.getRaiz().getEsquerdo().getValor());
 	}
 	
+	@Test
+	public void testeImpressaoPreOrdemRaizUmFilhoDireitoDoisEsquedo() {
+		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
+		
+		assertEquals("1 3 7 5", arvore.imprimirPreOrdem());
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	@Test
+	public void testeImpressaoPreOrdemCheiaDoisNiveis() {
+		arvore = builder.montaArvoreCheiaDoisNiveis();
+		
+		assertEquals("1 4 3 6 8 7 5", arvore.imprimirPreOrdem());
+	}
 	
 }
