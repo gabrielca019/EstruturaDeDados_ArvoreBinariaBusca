@@ -1,9 +1,14 @@
 package Test;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import Controller.ArvoreBinariaBuilder;
@@ -276,17 +281,33 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
-	public void testeImpressaoPreOrdemRaizUmFilhoDireitoDoisEsquedo() {
+	public void testeImpressaoPosOrdemRaizUmFilhoDireitoDoisEsquerdo() {
 		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
 		
-		assertEquals("1 3 7 5", arvore.imprimirPreOrdem());
+		assertEquals("1 3 7 5", arvore.imprimirPosOrdem());
 	}
 	
 	@Test
-	public void testeImpressaoPreOrdemCheiaDoisNiveis() {
+	public void testeImpressaoPosOrdemCheiaDoisNiveis() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		
-		assertEquals("1 4 3 6 8 7 5", arvore.imprimirPreOrdem());
+		assertEquals("1 4 3 6 8 7 5", arvore.imprimirPosOrdem());
+	}
+	
+	@Test
+	@DisplayName("IN ORDER - RAIZ _ UM DIREITO _ DOIS ESQUERDO")
+	public void testeImpressaoInOrdemRaizUmFilhoDireitoDoisEsquerdo() {
+		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
+		
+		assertEquals("1 3 5 7 ", arvore.imprimirInOrdem());
+	}
+	
+	@Test
+	@DisplayName("IN ORDER - DOIS NIVEIS")
+	public void testeImpressaoInOrdemCheiaDoisNiveis() {
+		arvore = builder.montaArvoreCheiaDoisNiveis();
+		
+		assertEquals("1 3 4 5 6 7 8 ", arvore.imprimirInOrdem());
 	}
 	
 }
