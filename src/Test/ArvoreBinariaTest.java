@@ -27,7 +27,7 @@ class ArvoreBinariaTest {
 
 	@Test
 	void deveRetornarEhVaziaSemRaiz() {
-		assertTrue(arvore.ehVazia());
+		assertTrue(arvore.arvoreEstaVazia());
 	}
 
 	@Test
@@ -35,83 +35,83 @@ class ArvoreBinariaTest {
 		No noUm = new No(1, null, null);
 		arvore.setRaiz(noUm);
 
-		assertFalse(arvore.ehVazia());
+		assertFalse(arvore.arvoreEstaVazia());
 	}
 
 	@Test
 	void deveRetornarQuantidadeSubNosArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
-		assertEquals(0, arvore.pegaQuantidadeNos());
+		assertEquals(0, arvore.getQuantidadeNos());
 	}
 
 	@Test
 	void deveRetornarQuantidadeSubNosArvoreSoRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
-		assertEquals(1, arvore.pegaQuantidadeNos());
+		assertEquals(1, arvore.getQuantidadeNos());
 	}
 
 	@Test
 	void deveRetornarQuantidadeSubNosArvoreComElementos() {
 		arvore = builder.montaArvoreRaizFilhoDireito();
-		assertEquals(2, arvore.pegaQuantidadeNos());
+		assertEquals(2, arvore.getQuantidadeNos());
 
 		arvore = builder.montaArvoreRaizFilhoEsquerdo();
-		assertEquals(2, arvore.pegaQuantidadeNos());
+		assertEquals(2, arvore.getQuantidadeNos());
 
 		arvore = builder.montaArvoreRaizFilhoDireitoEsquerdo();
-		assertEquals(3, arvore.pegaQuantidadeNos());
+		assertEquals(3, arvore.getQuantidadeNos());
 
 		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
-		assertEquals(4, arvore.pegaQuantidadeNos());
+		assertEquals(4, arvore.getQuantidadeNos());
 
 		arvore = builder.montaArvoreRaizDoisFilhoDireitoUmEsquerdo();
-		assertEquals(4, arvore.pegaQuantidadeNos());
+		assertEquals(4, arvore.getQuantidadeNos());
 
 		arvore = builder.montaArvoreRaizDoisFilhoDireitoDoisEsquerdo();
-		assertEquals(5, arvore.pegaQuantidadeNos());
+		assertEquals(5, arvore.getQuantidadeNos());
 
 		arvore = builder.montaArvoreCheiaDoisNiveis();
-		assertEquals(7, arvore.pegaQuantidadeNos());
+		assertEquals(7, arvore.getQuantidadeNos());
 
-		assertFalse(arvore.ehVazia());
+		assertFalse(arvore.arvoreEstaVazia());
 	}
 
 	@Test
 	void deveRetornarAlturaSubNosArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
-		assertEquals(0, arvore.pegaAlturaDaArvore());
+		assertEquals(0, arvore.getAlturaDaArvore());
 	}
 
 	@Test
 	void deveRetornarAlturaSubNosArvoreSoRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
-		assertEquals(0, arvore.pegaAlturaDaArvore());
+		assertEquals(0, arvore.getAlturaDaArvore());
 	}
 
 	@Test
 	void deveRetornarAlturaSubNosArvoreComElementos() {
 		arvore = builder.montaArvoreRaizFilhoDireito();
-		assertEquals(1, arvore.pegaAlturaDaArvore());
+		assertEquals(1, arvore.getAlturaDaArvore());
 
 		arvore = builder.montaArvoreRaizFilhoEsquerdo();
-		assertEquals(1, arvore.pegaAlturaDaArvore());
+		assertEquals(1, arvore.getAlturaDaArvore());
 
 		arvore = builder.montaArvoreRaizFilhoDireitoEsquerdo();
-		assertEquals(1, arvore.pegaAlturaDaArvore());
+		assertEquals(1, arvore.getAlturaDaArvore());
 
 		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
-		assertEquals(2, arvore.pegaAlturaDaArvore());
+		assertEquals(2, arvore.getAlturaDaArvore());
 
 		arvore = builder.montaArvoreRaizDoisFilhoDireitoUmEsquerdo();
-		assertEquals(2, arvore.pegaAlturaDaArvore());
+		assertEquals(2, arvore.getAlturaDaArvore());
 
 		arvore = builder.montaArvoreRaizDoisFilhoDireitoDoisEsquerdo();
-		assertEquals(2, arvore.pegaAlturaDaArvore());
+		assertEquals(2, arvore.getAlturaDaArvore());
 
 		arvore = builder.montaArvoreCheiaDoisNiveis();
-		assertEquals(2, arvore.pegaAlturaDaArvore());
+		assertEquals(2, arvore.getAlturaDaArvore());
 
-		assertFalse(arvore.ehVazia());
+		assertFalse(arvore.arvoreEstaVazia());
 	}
 
 	@Test
@@ -120,76 +120,76 @@ class ArvoreBinariaTest {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		No noTres = arvore.getRaiz().getEsquerdo();
 
-		assertEquals(1, arvore.pegaAlturaDoNo(noTres));
+		assertEquals(1, arvore.getAlturaDoNo(noTres));
 	}
 
 	@Test
 	void deveRetornarProfundidadeSubNosArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
 		No noRef = arvore.getRaiz();
-		assertEquals(0, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(0, arvore.getProfundidadeDoNo(noRef));
 	}
 
 	@Test
 	void deveRetornarProfundidadeSubNosArvoreSoRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
 		No noRef = arvore.getRaiz();
-		assertEquals(0, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(0, arvore.getProfundidadeDoNo(noRef));
 	}
 
 	@Test
 	void deveRetornarProfundidadeSubNosArvoreComElementos() {
 		arvore = builder.montaArvoreRaizFilhoDireito();
 		No noRef = arvore.getRaiz().getDireito();
-		assertEquals(1, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(1, arvore.getProfundidadeDoNo(noRef));
 
 		arvore = builder.montaArvoreRaizFilhoEsquerdo();
 		noRef = arvore.getRaiz().getEsquerdo();
-		assertEquals(1, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(1, arvore.getProfundidadeDoNo(noRef));
 
 		arvore = builder.montaArvoreRaizFilhoDireitoEsquerdo();
 		noRef = arvore.getRaiz().getDireito();
-		assertEquals(1, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(1, arvore.getProfundidadeDoNo(noRef));
 
 		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
 		noRef = arvore.getRaiz().getEsquerdo().getEsquerdo();
-		assertEquals(2, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(2, arvore.getProfundidadeDoNo(noRef));
 
 		arvore = builder.montaArvoreRaizDoisFilhoDireitoUmEsquerdo();
 		noRef = arvore.getRaiz().getDireito().getDireito();
-		assertEquals(2, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(2, arvore.getProfundidadeDoNo(noRef));
 
 		arvore = builder.montaArvoreRaizDoisFilhoDireitoDoisEsquerdo();
 		noRef = arvore.getRaiz().getDireito().getDireito();
-		assertEquals(2, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(2, arvore.getProfundidadeDoNo(noRef));
 
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		noRef = arvore.getRaiz().getEsquerdo().getEsquerdo();
-		assertEquals(2, arvore.pegaProfundidadeDoNo(noRef));
+		assertEquals(2, arvore.getProfundidadeDoNo(noRef));
 
-		assertFalse(arvore.ehVazia());
+		assertFalse(arvore.arvoreEstaVazia());
 	}
 
 	@Test
 	void deveRetornarNullSePegarNoArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
-		assertNull(arvore.pegarNoArvorePorValor(20));
+		assertNull(arvore.getNoArvorePorValor(20));
 	}
 
 	@Test
 	void deveRetornarNullSePegarNoNaoExistente() {
 		arvore = builder.montaArvoreSoRaiz();
-		assertNull(arvore.pegarNoArvorePorValor(20));
+		assertNull(arvore.getNoArvorePorValor(20));
 
 		arvore = builder.montaArvoreCheiaDoisNiveis();
-		assertNull(arvore.pegarNoArvorePorValor(20));
+		assertNull(arvore.getNoArvorePorValor(20));
 	}
 
 	@Test
 	void deveRetornarNoSePegarRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
 
-		No noRetornado = arvore.pegarNoArvorePorValor(5);
+		No noRetornado = arvore.getNoArvorePorValor(5);
 
 		assertNotNull(noRetornado);
 		assertEquals(5, noRetornado.getValor());
@@ -199,7 +199,7 @@ class ArvoreBinariaTest {
 	void deveRetornarNoSePegarOutroElemento() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 
-		No noRetornado = arvore.pegarNoArvorePorValor(3);
+		No noRetornado = arvore.getNoArvorePorValor(3);
 
 		assertNotNull(noRetornado);
 		assertEquals(3, noRetornado.getValor());
@@ -238,7 +238,7 @@ class ArvoreBinariaTest {
 	void deveAdicionarNaRaizQuandoVazia() {
 		arvore = builder.montaArvoreVazia();
 		
-		arvore.adicionaNo(13);
+		arvore.adicionarNo(13);
 		
 		assertEquals(13, arvore.getRaiz().getValor());
 	}
@@ -247,11 +247,11 @@ class ArvoreBinariaTest {
 	void deveAdicionarQuandoVariosElementos() {
 		arvore = builder.montaArvoreVazia();
 		
-		arvore.adicionaNo(15);
-		arvore.adicionaNo(16);
-		arvore.adicionaNo(5);
-		arvore.adicionaNo(20);
-		arvore.adicionaNo(23);
+		arvore.adicionarNo(15);
+		arvore.adicionarNo(16);
+		arvore.adicionarNo(5);
+		arvore.adicionarNo(20);
+		arvore.adicionarNo(23);
 		
 		assertEquals(15, arvore.getRaiz().getValor());
 		assertEquals(16, arvore.getRaiz().getDireito().getValor());
@@ -262,17 +262,17 @@ class ArvoreBinariaTest {
 	void deveRemoverQuandoVariosElementos() {
 		arvore = builder.montaArvoreVazia();
 		
-		arvore.adicionaNo(15);
-		arvore.adicionaNo(16);
-		arvore.adicionaNo(5);
-		arvore.adicionaNo(20);
-		arvore.adicionaNo(23);
-		arvore.adicionaNo(12);
-		arvore.adicionaNo(3);
-		arvore.adicionaNo(18);
-		arvore.adicionaNo(10);
-		arvore.adicionaNo(6);
-		arvore.adicionaNo(7);
+		arvore.adicionarNo(15);
+		arvore.adicionarNo(16);
+		arvore.adicionarNo(5);
+		arvore.adicionarNo(20);
+		arvore.adicionarNo(23);
+		arvore.adicionarNo(12);
+		arvore.adicionarNo(3);
+		arvore.adicionarNo(18);
+		arvore.adicionarNo(10);
+		arvore.adicionarNo(6);
+		arvore.adicionarNo(7);
 	
 		arvore.removerNoPorValor(5);
 		
