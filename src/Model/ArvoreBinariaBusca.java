@@ -180,7 +180,6 @@ public class ArvoreBinariaBusca {
 			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
 		else
 			return imprimirPosOrdemRecursividade(this.raiz);
-
 	}
 
 	private String imprimirPosOrdemRecursividade(No noReferencia) {
@@ -200,7 +199,6 @@ public class ArvoreBinariaBusca {
 			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
 		else
 			return imprimirInOrdemRecursividade(this.raiz);
-
 	}
 
 	private String imprimirInOrdemRecursividade(No noReferencia) {
@@ -220,7 +218,6 @@ public class ArvoreBinariaBusca {
 			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
 		else
 			return imprimirPreOrdemRecursividade(this.raiz);
-
 	}
 
 	private String imprimirPreOrdemRecursividade(No noReferencia) {
