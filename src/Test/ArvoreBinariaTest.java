@@ -1,6 +1,5 @@
 package Test;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -15,6 +14,7 @@ import Controller.ArvoreBinariaBuilder;
 import Model.ArvoreBinariaBusca;
 import Model.No;
 
+@DisplayName("Teste unitários da classe ArvoreBinariaBusca")
 class ArvoreBinariaTest {
 
 	private ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
@@ -26,11 +26,13 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Arvore vazia")
 	void deveRetornarEhVaziaSemRaiz() {
 		assertTrue(arvore.arvoreEstaVazia());
 	}
 
 	@Test
+	@DisplayName("Arvore possui raiz")
 	void deveRetornarNaoEhVaziaComRaiz() {
 		No noUm = new No(1, null, null);
 		arvore.setRaiz(noUm);
@@ -39,18 +41,21 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Quantidade de sub nós - arvore vazia")
 	void deveRetornarQuantidadeSubNosArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
 		assertEquals(0, arvore.getQuantidadeNos());
 	}
 
 	@Test
+	@DisplayName("Quantidade de sub nós - arvore só raiz")
 	void deveRetornarQuantidadeSubNosArvoreSoRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
 		assertEquals(1, arvore.getQuantidadeNos());
 	}
 
 	@Test
+	@DisplayName("Quantidade de sub nós - arvore com elementos")
 	void deveRetornarQuantidadeSubNosArvoreComElementos() {
 		arvore = builder.montaArvoreRaizFilhoDireito();
 		assertEquals(2, arvore.getQuantidadeNos());
@@ -77,18 +82,21 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Altura da arvore - arvore vazia")
 	void deveRetornarAlturaSubNosArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
 		assertEquals(0, arvore.getAlturaDaArvore());
 	}
 
 	@Test
+	@DisplayName("Altura da arvore - arvore só raiz")
 	void deveRetornarAlturaSubNosArvoreSoRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
 		assertEquals(0, arvore.getAlturaDaArvore());
 	}
 
 	@Test
+	@DisplayName("Altura da arvore - arvore com elementos")
 	void deveRetornarAlturaSubNosArvoreComElementos() {
 		arvore = builder.montaArvoreRaizFilhoDireito();
 		assertEquals(1, arvore.getAlturaDaArvore());
@@ -115,8 +123,8 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Altura sub nós - arvore com elementos")
 	void deveRetornarAlturaSubNosComElementos() {
-
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		No noTres = arvore.getRaiz().getEsquerdo();
 
@@ -124,6 +132,7 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Profundidade sub nós - arvore vazia")
 	void deveRetornarProfundidadeSubNosArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
 		No noRef = arvore.getRaiz();
@@ -131,6 +140,7 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Profundidade sub nós - arvore só raiz")
 	void deveRetornarProfundidadeSubNosArvoreSoRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
 		No noRef = arvore.getRaiz();
@@ -138,6 +148,7 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Profundidade sub nós - arvore com elementos")
 	void deveRetornarProfundidadeSubNosArvoreComElementos() {
 		arvore = builder.montaArvoreRaizFilhoDireito();
 		No noRef = arvore.getRaiz().getDireito();
@@ -171,12 +182,14 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Get valor do nó - arvore vazia")
 	void deveRetornarNullSePegarNoArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
 		assertNull(arvore.getNoArvorePorValor(20));
 	}
 
 	@Test
+	@DisplayName("Get valor do nó - valor inexistente na arvore")
 	void deveRetornarNullSePegarNoNaoExistente() {
 		arvore = builder.montaArvoreSoRaiz();
 		assertNull(arvore.getNoArvorePorValor(20));
@@ -186,6 +199,7 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Get valor do nó - arvore só raiz e valor existente")
 	void deveRetornarNoSePegarRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
 
@@ -196,6 +210,7 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Get valor do nó - arvore com elementos e valor existente")
 	void deveRetornarNoSePegarOutroElemento() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 
@@ -206,12 +221,14 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Contem nó - arvore vazia")
 	void deveRetornarFalseContemArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
 		assertFalse(arvore.contem(20));
 	}
 
 	@Test
+	@DisplayName("Contem nó - arvore com elementos e no inexistente")
 	void deveRetornarFalseContemNoNaoExistente() {
 		arvore = builder.montaArvoreSoRaiz();
 		assertFalse(arvore.contem(20));
@@ -221,12 +238,14 @@ class ArvoreBinariaTest {
 	}
 
 	@Test
+	@DisplayName("Contem nó - arvore só raiz e valor existente")
 	void deveRetornarTrueContemSoRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
 		assertTrue(arvore.contem(5));
 	}
 
 	@Test
+	@DisplayName("Contem nó - arvore com elementos e valores existentes")
 	void deveRetornarNoComtemOutroElemento() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		assertTrue(arvore.contem(3));
@@ -235,6 +254,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
+	@DisplayName("Adicionar nó - arvore vazia")
 	void deveAdicionarNaRaizQuandoVazia() {
 		arvore = builder.montaArvoreVazia();
 		
@@ -244,6 +264,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
+	@DisplayName("Adicionar nó - arvore com elementos")
 	void deveAdicionarQuandoVariosElementos() {
 		arvore = builder.montaArvoreVazia();
 		
@@ -259,6 +280,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
+	@DisplayName("Remover nó - arvore com elementos")
 	void deveRemoverQuandoVariosElementos() {
 		arvore = builder.montaArvoreVazia();
 		
@@ -281,6 +303,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
+	@DisplayName("Imprimir - Pos ordem - um filho direito dois esquerdos")
 	public void testeImpressaoPosOrdemRaizUmFilhoDireitoDoisEsquerdo() {
 		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
 		
@@ -288,6 +311,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
+	@DisplayName("Imprimir - Pos ordem - cheio dois niveis")
 	public void testeImpressaoPosOrdemCheiaDoisNiveis() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		
@@ -295,7 +319,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
-	@DisplayName("IN ORDER - RAIZ _ UM DIREITO _ DOIS ESQUERDO")
+	@DisplayName("Imprimir - In ordem - um filho direito dois esquerdos")
 	public void testeImpressaoInOrdemRaizUmFilhoDireitoDoisEsquerdo() {
 		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
 		
@@ -303,7 +327,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
-	@DisplayName("IN ORDER - DOIS NIVEIS")
+	@DisplayName("Imprimir - In order - cheio dois niveis")
 	public void testeImpressaoInOrdemCheiaDoisNiveis() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		
@@ -311,7 +335,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
-	@DisplayName("PRE ORDER - RAIZ _ UM DIREITO _ DOIS ESQUERDO")
+	@DisplayName("Imprimir - Pre ordem - um filho direito dois esquerdos")
 	public void testeImpressaoPreOrdemRaizUmFilhoDireitoDoisEsquerdo() {
 		arvore = builder.montaArvoreRaizUmFilhoDireitoDoisEsquerdo();
 		
@@ -319,7 +343,7 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
-	@DisplayName("PRE ORDER - DOIS NIVEIS")
+	@DisplayName("Imprimir - Pre ordem - cheio dois niveis")
 	public void testeImpressaoPreOrdemCheiaDoisNiveis() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
 		

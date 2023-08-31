@@ -151,13 +151,12 @@ public class ArvoreBinariaBusca {
 			}
 		}
 
-		if (valorRemovido < noReferencia.getValor()) {
+		if (valorRemovido < noReferencia.getValor()) 
 			noReferencia.setEsquerdo(removerNoArvoreRecursivamente(noReferencia.getEsquerdo(), valorRemovido));
-		} else {
+		else 
 			noReferencia.setDireito(removerNoArvoreRecursivamente(noReferencia.getDireito(), valorRemovido));
-		}
+		
 		return noReferencia;
-
 	}
 
 	private boolean soFilhoDireito(No noReferencia) {
