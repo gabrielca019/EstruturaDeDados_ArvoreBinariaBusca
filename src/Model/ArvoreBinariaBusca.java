@@ -1,5 +1,11 @@
 package Model;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArvoreBinariaBusca {
 
 	private static final String OPERACAO_INVALIDA_ARVORE_VAZIA = "Operacao Invalida: arvore vazia";
@@ -126,14 +132,14 @@ public class ArvoreBinariaBusca {
 	}
 
 	public void removerNoPorValor(int valorRemovido) {
-		if (arvoreEstaVazia()) 
+		if (arvoreEstaVazia())
 			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
-		else 
+		else
 			raiz = removerNoArvoreRecursivamente(raiz, valorRemovido);
 	}
 
 	private No removerNoArvoreRecursivamente(No noReferencia, int valorRemovido) {
-		if (noReferencia == null) 
+		if (noReferencia == null)
 			return null;
 
 		if (valorRemovido == noReferencia.getValor()) {
@@ -151,11 +157,11 @@ public class ArvoreBinariaBusca {
 			}
 		}
 
-		if (valorRemovido < noReferencia.getValor()) 
+		if (valorRemovido < noReferencia.getValor())
 			noReferencia.setEsquerdo(removerNoArvoreRecursivamente(noReferencia.getEsquerdo(), valorRemovido));
-		else 
+		else
 			noReferencia.setDireito(removerNoArvoreRecursivamente(noReferencia.getDireito(), valorRemovido));
-		
+
 		return noReferencia;
 	}
 
@@ -230,20 +236,52 @@ public class ArvoreBinariaBusca {
 
 		return sequenciaImpressao;
 	}
-	
-	//Exercicio 8: ler txt com 2000+ itens e inserir na árvore
-	public void gerarCargaDoisMilNos() {
+
+	// Exercicio 8: ler txt com 2000+ itens e inserir na árvore
+	public List<String> gerarCargaDoisMilNos() {
+		BufferedReader buffRead = null;
+		String linha = "";
+		List<String> listaNos = new ArrayList<>();
 		
+		try {
+			buffRead = new BufferedReader(new FileReader("DoisMilNos.txt"));
+			
+			while ((linha = buffRead.readLine()) != null) {
+				if (linha != null) {
+					for(String no : linha.split(" "))
+						listaNos.add(no);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				buffRead.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return listaNos;
 	}
-	
-	//Exercicio 8: apagar todos os nos
+
+	// Exercicio 8: apagar todos os nos
 	public void removerTodosNos() {
-		
+		if (arvoreEstaVazia())
+			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
+		else
+			raiz = removerTodosNosRecursivos(raiz);
 	}
-	
-	//Recursao do removerAll
-	private void removerTodosNosRecursivos() {
-		
+
+	// Exercício 8: Recursao do removerAll
+	private No removerTodosNosRecursivos(No noReferencia) {
+		if (noReferencia != null) {
+			imprimirPosOrdemRecursividade(noReferencia.getEsquerdo());
+			imprimirPosOrdemRecursividade(noReferencia.getDireito());		
+		}
+		return null;
 	}
 
 }
