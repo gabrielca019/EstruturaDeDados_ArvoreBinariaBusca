@@ -94,7 +94,7 @@ public class ArvoreBinariaBusca {
 			return buscaValorNoReferenciaSeusDescendentes(valorBuscado, noReferencia.getDireito());
 	}
 
-	public boolean contem(int valorBuscado) {
+	public boolean contemNoPorValor(int valorBuscado) {
 		return buscaValorNoReferenciaSeusDescendentes(valorBuscado, raiz) != null;
 	}
 
@@ -132,7 +132,7 @@ public class ArvoreBinariaBusca {
 			raiz = removerNoArvoreRecursivamente(raiz, valorRemovido);
 	}
 
-	public No removerNoArvoreRecursivamente(No noReferencia, int valorRemovido) {
+	private No removerNoArvoreRecursivamente(No noReferencia, int valorRemovido) {
 		if (noReferencia == null) 
 			return null;
 
@@ -229,6 +229,21 @@ public class ArvoreBinariaBusca {
 		}
 
 		return sequenciaImpressao;
+	}
+	
+	//Exercicio 8: ler txt com 2000+ itens e inserir na árvore
+	public void gerarCargaDoisMilNos() {
+		
+	}
+	
+	//Exercicio 8: apagar todos os nos
+	public void removerTodosNos() {
+		
+	}
+	
+	//Recursao do removerAll
+	private void removerTodosNosRecursivos() {
+		
 	}
 
 }

@@ -12,7 +12,7 @@ import Model.No;
 class NoTest {
 
 	@Test
-	@DisplayName("No Folha - Apenas o filho direito")
+	@DisplayName("No folha - Apenas o filho direito")
 	void deveRetornarEhNoFolhaSoFilhoDireito() {
 		No noUm = new No(1, null, null); 
 		No noDois = new No(2, noUm, null);

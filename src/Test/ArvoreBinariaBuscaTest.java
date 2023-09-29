@@ -1,5 +1,6 @@
 package Test;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -15,7 +16,7 @@ import Model.ArvoreBinariaBusca;
 import Model.No;
 
 @DisplayName("Teste unitários da classe ArvoreBinariaBusca")
-class ArvoreBinariaTest {
+class ArvoreBinariaBuscaTest {
 
 	private ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
 	private ArvoreBinariaBuilder builder = new ArvoreBinariaBuilder();
@@ -224,33 +225,33 @@ class ArvoreBinariaTest {
 	@DisplayName("Contem nó - arvore vazia")
 	void deveRetornarFalseContemArvoreVazia() {
 		arvore = builder.montaArvoreVazia();
-		assertFalse(arvore.contem(20));
+		assertFalse(arvore.contemNoPorValor(20));
 	}
 
 	@Test
 	@DisplayName("Contem nó - arvore com elementos e no inexistente")
 	void deveRetornarFalseContemNoNaoExistente() {
 		arvore = builder.montaArvoreSoRaiz();
-		assertFalse(arvore.contem(20));
+		assertFalse(arvore.contemNoPorValor(20));
 
 		arvore = builder.montaArvoreCheiaDoisNiveis();
-		assertFalse(arvore.contem(20));
+		assertFalse(arvore.contemNoPorValor(20));
 	}
 
 	@Test
 	@DisplayName("Contem nó - arvore só raiz e valor existente")
 	void deveRetornarTrueContemSoRaiz() {
 		arvore = builder.montaArvoreSoRaiz();
-		assertTrue(arvore.contem(5));
+		assertTrue(arvore.contemNoPorValor(5));
 	}
 
 	@Test
 	@DisplayName("Contem nó - arvore com elementos e valores existentes")
 	void deveRetornarNoComtemOutroElemento() {
 		arvore = builder.montaArvoreCheiaDoisNiveis();
-		assertTrue(arvore.contem(3));
-		assertTrue(arvore.contem(4));
-		assertTrue(arvore.contem(1));
+		assertTrue(arvore.contemNoPorValor(3));
+		assertTrue(arvore.contemNoPorValor(4));
+		assertTrue(arvore.contemNoPorValor(1));
 	}
 	
 	@Test
@@ -280,6 +281,26 @@ class ArvoreBinariaTest {
 	}
 	
 	@Test
+	@DisplayName("Remover nó - arvore vazia")
+	void deveRemoverQuandoNenhumElemento() {
+		arvore = builder.montaArvoreVazia();
+		
+		assertThrows(IllegalArgumentException.class, () -> arvore.removerNoPorValor(2));
+	}
+	
+	@Test
+	@DisplayName("Remover nó - arvore vazia")
+	void deveRemoverQuandoUmElemento() {
+		arvore = builder.montaArvoreVazia();
+		
+		arvore.adicionarNo(3);
+		
+		arvore.removerNoPorValor(3);
+		
+		assertNull(arvore.getRaiz());
+	}
+	
+	@Test
 	@DisplayName("Remover nó - arvore com elementos")
 	void deveRemoverQuandoVariosElementos() {
 		arvore = builder.montaArvoreVazia();
@@ -300,6 +321,53 @@ class ArvoreBinariaTest {
 		
 		assertEquals(15, arvore.getRaiz().getValor());
 		assertEquals(6, arvore.getRaiz().getEsquerdo().getValor());
+	}
+	
+	@Test
+	@DisplayName("Remover nó - arvore com elementos, raiz com dois filhos")
+	void deveRemoverQuandoSomenteRaizDoisFilhos() {
+		arvore = builder.montaArvoreVazia();
+		
+		arvore.adicionarNo(15);
+		arvore.adicionarNo(16);
+		arvore.adicionarNo(5);
+	
+		arvore.removerNoPorValor(15);
+		
+		assertEquals(16, arvore.getRaiz().getValor());
+		assertEquals(5, arvore.getRaiz().getEsquerdo().getValor());
+	}
+	
+	@Test
+	@DisplayName("Remover nó - arvore com elementos, somente um filho esquerdo")
+	void deveRemoverQuandoSomenteFilhoEsquerdo() {
+		arvore = builder.montaArvoreVazia();
+		
+		arvore.adicionarNo(15);
+		arvore.adicionarNo(16);
+		arvore.adicionarNo(5);
+		arvore.adicionarNo(3);
+	
+		arvore.removerNoPorValor(5);
+		
+		assertEquals(15, arvore.getRaiz().getValor());
+		assertEquals(3, arvore.getRaiz().getEsquerdo().getValor());
+	}
+	
+	@Test
+	@DisplayName("Remover nó - arvore com elementos, remover raiz")
+	void deveRemoverQuandoSomenteFilhoDireito() {
+		arvore = builder.montaArvoreVazia();
+		
+		arvore.adicionarNo(15);
+		arvore.adicionarNo(16);
+		arvore.adicionarNo(5);
+		arvore.adicionarNo(20);
+	
+		arvore.removerNoPorValor(16);
+		
+		assertEquals(15, arvore.getRaiz().getValor());
+		assertEquals(20, arvore.getRaiz().getDireito().getValor());
 	}
 	
 	@Test
