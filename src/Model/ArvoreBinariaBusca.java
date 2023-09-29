@@ -238,10 +238,10 @@ public class ArvoreBinariaBusca {
 	}
 
 	// Exercicio 8: ler txt com 2000+ itens e inserir na árvore
-	public List<String> gerarCargaDoisMilNos() {
+	public List<Integer> gerarCargaDoisMilNos() {
 		BufferedReader buffRead = null;
 		String linha = "";
-		List<String> listaNos = new ArrayList<>();
+		List<Integer> listaNos = new ArrayList<>();
 		
 		try {
 			buffRead = new BufferedReader(new FileReader("DoisMilNos.txt"));
@@ -249,7 +249,7 @@ public class ArvoreBinariaBusca {
 			while ((linha = buffRead.readLine()) != null) {
 				if (linha != null) {
 					for(String no : linha.split(" "))
-						listaNos.add(no);
+						listaNos.add(Integer.parseInt(no));
 				}
 			}
 		} catch (FileNotFoundException e) {
