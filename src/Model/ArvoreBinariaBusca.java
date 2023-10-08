@@ -3,8 +3,6 @@ package Model;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ArvoreBinariaBusca {
 
@@ -237,19 +235,33 @@ public class ArvoreBinariaBusca {
 		return sequenciaImpressao;
 	}
 
+	// Exercicio 8: apagar todos os nos
+	public void removerTodosNos() {
+		raiz = removerTodosNosRecursivos(raiz);
+	}
+
+	// Exercício 8: Recursao do removerAll
+	private No removerTodosNosRecursivos(No noReferencia) {
+		if (noReferencia != null) {
+			removerTodosNosRecursivos(noReferencia.getEsquerdo());
+			removerTodosNosRecursivos(noReferencia.getDireito());
+		}
+		return null;
+	}
+
 	// Exercicio 8: ler txt com 2000+ itens e inserir na árvore
-	public List<Integer> gerarCargaDoisMilNos() {
+	public void gerarCargaDoisMilNos() {
+		this.removerTodosNos();
+
 		BufferedReader buffRead = null;
 		String linha = "";
-		List<Integer> listaNos = new ArrayList<>();
-		
+
 		try {
 			buffRead = new BufferedReader(new FileReader("DoisMilNos.txt"));
-			
+
 			while ((linha = buffRead.readLine()) != null) {
 				if (linha != null) {
-					for(String no : linha.split(" "))
-						listaNos.add(Integer.parseInt(no));
+					this.adicionarNo(Integer.parseInt(linha));
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -259,29 +271,10 @@ public class ArvoreBinariaBusca {
 		} finally {
 			try {
 				buffRead.close();
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		return listaNos;
-	}
-
-	// Exercicio 8: apagar todos os nos
-	public void removerTodosNos() {
-		if (arvoreEstaVazia())
-			throw new IllegalArgumentException(OPERACAO_INVALIDA_ARVORE_VAZIA);
-		else
-			raiz = removerTodosNosRecursivos(raiz);
-	}
-
-	// Exercício 8: Recursao do removerAll
-	private No removerTodosNosRecursivos(No noReferencia) {
-		if (noReferencia != null) {
-			imprimirPosOrdemRecursividade(noReferencia.getEsquerdo());
-			imprimirPosOrdemRecursividade(noReferencia.getDireito());		
-		}
-		return null;
 	}
 
 }
